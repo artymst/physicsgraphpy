@@ -1,5 +1,5 @@
 # **PhysicsGraphPy**
-**beginner-friendly python library for visualizing kinematics motion graphs**
+*... beginner-friendly python library for visualizing kinematics motion graphs*
 
 ---
 
