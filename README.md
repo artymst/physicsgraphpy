@@ -39,9 +39,9 @@ No specialized software required, any standard Python setup works.
 
 - **Windows**  
 - **macOS**  
-- **linux**
+- **Linux**
 
-As long as python is supported, the library should work. browser-based or mobile interpreters may be limited.
+As long as Python is supported, the library should work. browser-based or mobile interpreters may be limited.
 
 ---
 
