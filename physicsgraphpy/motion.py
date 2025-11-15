@@ -1,25 +1,29 @@
-import numpy as np
+import math
 
-class MotionGraph:
-    def __init__(self, initial_position, initial_velocity, acceleration):
-        self.x0 = initial_position
-        self.v0 = initial_velocity
-        self.a = acceleration
-        self.positions = []
-        self.velocities = []
+class ProjectileMotion:
+    def __init__(self, v0, angle_deg, g=9.8):
+        self.v0 = v0
+        self.angle = math.radians(angle_deg)
+        self.g = g
         self.times = []
+        self.xs = []
+        self.ys = []
 
     def simulate(self, t_max, dt=0.01):
         t = 0
-        x = self.x0
-        v = self.v0
         while t <= t_max:
             self.times.append(t)
-            self.positions.append(x)
-            self.velocities.append(v)
-            v = self.v0 + self.a * t
-            x = self.x0 + self.v0 * t + 0.5 * self.a * t ** 2
+            x = self.v0 * math.cos(self.angle) * t
+            y = self.v0 * math.sin(self.angle) * t - 0.5 * self.g * t**2
+            self.xs.append(x)
+            self.ys.append(y)
             t += dt
 
-    def get_accelerations(self):
-        return [self.a] * len(self.times)
+    def max_height(self):
+        return (self.v0 ** 2) * (math.sin(self.angle) ** 2) / (2 * self.g)
+
+    def time_of_flight(self):
+        return 2 * self.v0 * math.sin(self.angle) / self.g
+
+    def range(self):
+        return (self.v0 ** 2) * math.sin(2 * self.angle) / self.g
